@@ -26,32 +26,104 @@
 # end
 # ```
 
+class Stack
+    def initialize
+        @array=[]
+    end
+    
+    def push(el)
+        @array.push(el)
+    end
+
+    def pop 
+        @array.pop 
+    end
+
+    def peek 
+        @array.last 
+    end
+
+
+end
+
 # To test that your code works, create a new instance of the `Stack` class, and
-play
-around with adding and removing elements. Remember, a stack follows the
-principle of LIFO!
+# play
+# around with adding and removing elements. Remember, a stack follows the
+# principle of LIFO!
 
-## Exercise 2: Queue
+# ## Exercise 2: Queue
+class Queue
+    def initialize
+        @array=[]
+    end
 
-Now let's write a `Queue` class. You will need the following instance methods:
-`enqueue(el)`, `dequeue`, and `peek`.
+    def enter(el)
+        @array.push(el)
+    end
+    def dequeue
+        @array.shift
+    end
+    def peek 
+        @array.first 
+    end
+end
+# Now let's write a `Queue` class. You will need the following instance methods:
+# `enqueue(el)`, `dequeue`, and `peek`.
 
-Test your code to ensure it follows the principle of FIFO.
+# Test your code to ensure it follows the principle of FIFO.
 
-## Exercise 3: Map
+# ## Exercise 3: Map
 
-As you saw in the videos for tonight, a map can be implemented using a 2D array.
-Let's write a Map class (following a similar pattern to `Stack` and `Queue`)
-that implements a map using only arrays.
+class Map
+    def initialize
+        @map = []
+    end
 
-Remember, a map stores information in key-value pairs, where the keys are always
-unique. When implemented with arrays, a map might look something like this:
-`my_map = [[k1, v1], [k2, v2], [k3, v2], ...]`.
+    def set(key,value)
+       #test existing 
+       key_index = @map.index {|pair| pair[0] == key}
+       if pair_index 
+            @map[pair_index][1] = value
+       else
+        @map << [key,value]
+       end
+       value
+    end
 
-Our Map class should have the following instance methods: `set(key, value)`,
-`get(key)`, `delete(key)`, `show`. Note that the `set` method can be used to
-either create a new key-value pair or update the value for a pre-existing key.
-It's up to you to check whether or not a key currently exists!
+    def get(key)
+        @map.each do |pairs|
+            if pairs[0]==key 
+                return pairs[1]
+            end
+        end
+        nil
+    end
+    
+    def delete(key)
+        value = get(key)
+       index = @map.index {|pair| pair[0] == key}
+        @map.delete_at(index)
+        value
+    end
 
-As always, test your code thoroughly to make sure all properties of maps are
-enforced.
+    def show 
+        @map 
+    end
+
+end
+
+# As you saw in the videos for tonight, a map can be implemented using a 2D array.
+# Let's write a Map class (following a similar pattern to `Stack` and `Queue`)
+# that implements a map using only arrays.
+
+# Remember, a map stores information in key-value pairs, where the keys are always
+# unique. When implemented with arrays, a map might look something like this:
+# `my_map = [[k1, v1], [k2, v2], [k3, v2], ...]`.
+
+# Our Map class should have the following instance methods: `set(key, value)`,
+# `get(key)`, `delete(key)`, `show`. Note that the `set` method can be used to
+# either create a new key-value pair or update the value for a pre-existing key.
+# It's up to you to check whether or not a key currently exists!
+
+# As always, test your code thoroughly to make sure all properties of maps are
+# enforced.
